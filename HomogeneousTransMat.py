@@ -32,12 +32,24 @@ def DH(theta, d, a, alpha):
                     [0, 0, 1, 0],
                     [0, 0, 0, 1]])
 
+    # We have that T = T(z, tetha) T(z,d) T(x,a) T(x, alpha)
+    Temp = np.matmul(Txalpha, Txa)
+    Temp2 = np.matmul(Temp, Tzd)
+    T = np.matmul(Temp2, Tztheta)
+
+    # Tv2 = np.matmul( (np.matmul( (np.matmul(Txalpha, Txa)), Tzd) ), Tztheta )
+
     # Print all the matrices
     print("Txalpha =", Txalpha)
     print("Txa = ", Txa)
     print("Tzd = ", Tzd)
     print("Tztheta = ", Tztheta)
-     
+    print()
+    
+    # Print the result T
+    print("T = ", T)
+    print()
+    print("Tv2", Tv2)
 
 # Main
 if __name__ == "__main__":
