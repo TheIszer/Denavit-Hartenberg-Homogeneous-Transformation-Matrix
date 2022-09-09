@@ -1,8 +1,9 @@
+from pickletools import OpcodeInfo, optimize
 import numpy as np
 
 # Denavit-Hartenberg Homogeneous Transformation Matrix
 def DH(theta, d, a, alpha):
-    print(theta, d, a, alpha)
+    print("Solving for: ", theta, d, a, alpha, end="\n\n")
 
     # Rotation alpha about OX axis
     # T(x, alpha)
@@ -32,26 +33,47 @@ def DH(theta, d, a, alpha):
                     [0, 0, 1, 0],
                     [0, 0, 0, 1]])
 
+
     # We have that T = T(z, tetha) T(z,d) T(x,a) T(x, alpha)
+    # T = np.matmul( (np.matmul( (np.matmul(Txalpha, Txa)), Tzd) ), Tztheta )
     Temp = np.matmul(Txalpha, Txa)
     Temp2 = np.matmul(Temp, Tzd)
     T = np.matmul(Temp2, Tztheta)
-
-    # Tv2 = np.matmul( (np.matmul( (np.matmul(Txalpha, Txa)), Tzd) ), Tztheta )
-
-    # Print all the matrices
-    print("Txalpha =", Txalpha)
-    print("Txa = ", Txa)
-    print("Tzd = ", Tzd)
-    print("Tztheta = ", Tztheta)
-    print()
+    # We round T to 3 decimals:
+    T = np.around(T, decimals=3)
     
     # Print the result T
-    print("T = ", T)
+    print("T = \n", T, end="\n\n")
+    
+    '''
+    # Print all the matrices
+    print("Txalpha =", np.around(Txalpha, decimals=3))
+    print("Txa = ", np.around(Txa, decimals=3))
+    print("Tzd = ", np.around(Tzd, decimals=3))
+    print("Tztheta = ", np.around(Tztheta, decimals=3))
     print()
-    print("Tv2", Tv2)
+    '''
 
 # Main
 if __name__ == "__main__":
     print("Denavit-Hartenberg Homogeneous Transformation Matrix")
-    DH(0, 0, 0, 0)
+    print(" --Option 1: DH(theta, d, a, alpha) in degrees")
+    print(" --Option 2: DH(theta, d, a, alpha) in radians")
+    option = int(input("Choose an option: "))
+
+    # Parameters in degrees
+    if option == 1:
+        print("Introduce the values (in degrees) of:")
+        theta, d, a, alpha = input("theta d a alpha: ").split()
+        print()
+        DH( np.deg2rad(float(theta)), 
+            np.deg2rad(float(d)),
+            np.deg2rad(float(a)),
+            np.deg2rad(float(alpha)))
+
+    # Parameters in radians  
+    if option == 2:
+        print("Introduce the values (in radians) of:")
+        theta, d, a, alpha = input("theta d a alpha: ").split()
+        print()
+        DH(theta, d, a, alpha)
