@@ -1,10 +1,10 @@
 ## Denavit-Hartenberg-Homogeneous-Transformation-Matrix
 # Description
-This program will find the homogeneous transformation matrix (T) for the following operation:
-Rotation alpha about OX axis
-Translation of d along OZ axis
-Translation of a along OX axis
-Rotation of about OZ axis
+This program will find the homogeneous transformation matrix (T) for the following operation:<br>
+-Rotation alpha about OX axis<br>
+-Translation of d along OZ axis<br>
+-Translation of a along OX axis<br>
+-Rotation of about OZ axis<br>
 
 # Example of use:
 Denavit-Hartenberg Homogeneous Transformation Matrix<br>
