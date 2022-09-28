@@ -28,8 +28,8 @@ def DH(theta, d, a, alpha):
     
     # Rotation of theta about OZ axis
     # T(z, theta)
-    Tztheta = np.array([[np.cos(alpha), -np.sin(alpha), 0, 0],
-                    [np.sin(alpha), np.cos(alpha), 0, 0],
+    Tztheta = np.array([[np.cos(theta), -np.sin(theta), 0, 0],
+                    [np.sin(theta), np.cos(theta), 0, 0],
                     [0, 0, 1, 0],
                     [0, 0, 0, 1]])
 
@@ -67,8 +67,8 @@ if __name__ == "__main__":
         theta, d, a, alpha = input("theta d a alpha: ").split()
         print()
         DH( np.deg2rad(float(theta)), 
-            np.deg2rad(float(d)),
-            np.deg2rad(float(a)),
+            np.float(d),
+            np.float(a),
             np.deg2rad(float(alpha)))
 
     # Parameters in radians  
